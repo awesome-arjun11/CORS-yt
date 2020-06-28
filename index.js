@@ -55,7 +55,7 @@ const handleRequest = async (req) => {
   const parsedUrl = new URL(ytRequestURL);
 
   if ( parsedUrl.hostname != 'www.youtube.com' )  
-    forbiddenHTTPResponse();
+    return forbiddenHTTPResponse();
  
   // headers for YouTube Frontend Proxy 
   const ytreq_headers = {};
