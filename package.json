@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "cors-yt",
+  "version": "1.0.0",
+  "description": "CORS proxy for youtube-dl requests from front end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arjun Singh <awesome-arjun11@github.com>",
+  "license": "MIT"
+}
