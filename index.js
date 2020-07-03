@@ -48,13 +48,14 @@ addEventListener('fetch', event => {
 const handleRequest = async (req) => {
   const origin = req.headers.get('Origin');
   const ytRequestURL = getReqUrl(req.url);
+  console.log(ytRequestURL);
 
   if( !ytRequestURL ) 
     return defaultHTMLResponse();
 
   const parsedUrl = new URL(ytRequestURL);
 
-  if ( parsedUrl.hostname != 'www.youtube.com' )  
+  if ( parsedUrl.hostname != 'www.youtube.com' && parsedUrl.hostname != 'manifest.googlevideo.com' )  
     return forbiddenHTTPResponse();
  
   // headers for YouTube Frontend Proxy 
@@ -66,7 +67,7 @@ const handleRequest = async (req) => {
 
   let response = await fetch(ytRequestURL, { headers: ytreq_headers });
   response = new Response(response.body, response);
-  response.headers.set('Access-Control-Allow-Origin', origin);
+  response.headers.set('Access-Control-Allow-Origin', "*");
   return response;    
 }
 
@@ -79,7 +80,7 @@ const handleOptions = async (request) => {
 
   const parsedUrl = new URL(ytRequestURL);
 
-  if ( parsedUrl.hostname != 'www.youtube.com' )  
+  if ( parsedUrl.hostname != 'www.youtube.com' && parsedUrl.hostname != 'manifest.googlevideo.com' )  
     return forbiddenHTTPResponse();
 
   if (
